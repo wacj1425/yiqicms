@@ -1,1 +1,0 @@
-<div class="footer">版权所有 <a href="http://www.yiqicms.com/" style="color:#ffffff;" target="_blank">易企科技</a></div>
