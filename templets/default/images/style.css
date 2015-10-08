@@ -1,0 +1,191 @@
+﻿*
+{
+	margin:0px;
+	padding:0px;
+}
+/*common start*/
+body
+{
+	font-size:12px;
+	line-height:22px;
+}
+img
+{
+	border:0px;
+}
+li
+{
+	list-style-type:none;
+}
+a:link,a:visited
+{
+	color:#333;
+	text-decoration:none;
+}
+a:hover
+{
+	text-decoration:underline;
+}
+.fl
+{	
+	float:left;
+}
+.fr
+{	
+	float:right;
+}
+.textcenter
+{
+	text-align:center;
+}
+.clear
+{
+	overflow:hidden;
+	clear:both;
+	line-height:12px;
+}
+.line
+{
+	border-bottom:1px solid #c5ddf7;
+	line-height:1px;
+}
+.combox
+{
+    background:#fff;
+    border:1px #c5ddf7 solid;
+    position:relative;
+    _width:100%;/*for IE6*/
+}
+
+.combox h2
+{
+    background:#eaf4fe;
+	font-size:12px;
+	font-weight:bold;
+	color:#2a66a5;
+	line-height:26px;
+	padding:0 12px;
+	border-top:1px #f9fdff solid;
+	border-bottom:1px #c5ddf7 solid;
+}
+.combox h2 .more
+{
+	float:right;
+	font-weight:normal;
+}
+.combox .content
+{
+	padding:10px;
+	overflow:hidden;
+}
+/*common end*/
+
+
+.wrap
+{
+	width:960px;
+	margin:auto;
+}
+.header
+{
+	height:80px;
+}
+.menu
+{
+	background:#008be8;
+	overflow:hidden;
+	height:35px;
+	line-height:35px;
+	color:#fff;
+	font-size:15px;
+	font-weight:bold;
+}
+.menu ul li 
+{
+	float:left;
+	padding:0px 20px;
+	text-align:center;
+}
+.menu ul li a
+{
+	color:#ffffff;
+}
+.navigate
+{
+	border:1px solid #c5ddf7;
+	padding:5px;
+	text-indent:10px;
+}
+.main
+{
+
+}
+.mainside
+{	
+	float:left;
+	width:230px;
+}
+.mainbody
+{
+	float:right;
+	width:710px;
+}
+.footer
+{
+	background:#008be8;
+	overflow:hidden;
+	height:26px;
+	line-height:26px;
+	color:#fff;
+	padding:0px 20px;
+}
+.footer a:link,.footer a:visited,.footer a:hover
+{
+	color:#fff;
+}
+
+#content
+{
+	overflow:hidden;
+}
+#content h1
+{
+	text-align:center;
+	padding:15px;
+	overflow:hidden;
+	font-size:25px;
+}
+#content .attr
+{
+	padding:0px 15px;
+}
+#content .content
+{
+	font-size:15px;
+	text-indent:20px;
+	padding:15px;
+	padding-top:0px !important;
+}
+
+.result_list
+{
+	padding:5px;
+	overflow:hidden;
+}
+.thumb
+{
+	float:left;
+	width:165px;
+	height:170px;
+	text-align:center;
+}
+.thumb img
+{
+	width:150px;
+	height:130px;
+}
+#sub_category .content ul li
+{
+	float:left;
+	padding-right:10px;
+}
