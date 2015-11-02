@@ -15,7 +15,7 @@
 <div class="wrap">
 <div class="header">
 </div>
-<div class="nav"><span class="fr"><img src="../images/user_icon.gif" alt="欢迎登陆" title="欢迎登陆" />&nbsp;欢迎登陆：<?php echo $adminuserinfo->username;?>&nbsp;&nbsp;您可以查看 <a href="http://www.yiqicms.com/category/changjianbangzhu/" target="_blank">易企CMS常见帮助</a>、进入 <a href="http://www.yiqicms.com/forum/" target="_blank">易企CMS论坛</a>&nbsp;或者&nbsp;<a href="logout.php">退出登录</a></span>当前位置：后台管理 》 <?php echo $adminpagetitle;?></div>
+<div class="nav"><span class="fr"><img src="../images/user_icon.gif" alt="欢迎登陆" title="欢迎登陆" />&nbsp;欢迎登陆：<?php echo $adminuserinfo->username;?>&nbsp;&nbsp;您可以查看 <a href="http://www.yiqicms.top/category/help/" target="_blank">YIQITOP常见帮助</a>、进入 <a href="http://www.yiqicms.top/faq/" target="_blank">YIQITOP问答</a>&nbsp;或者&nbsp;<a href="logout.php">退出登录</a></span>当前位置：后台管理 》 <?php echo $adminpagetitle;?></div>
 <div class="clear">&nbsp;</div>
 <div class="main">
 
