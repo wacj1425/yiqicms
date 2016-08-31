@@ -41,6 +41,10 @@
 				<div class="clear">&nbsp;</div>
 				<div class="content">{$article->content}
 				<div class="clear">&nbsp;</div>
+				<div class="page">
+					{$article->pageinfo}
+				</div>
+				<div class="clear">&nbsp;</div>
 				<div>
 				{assign var=prevarticle value=$articledata->GetPrevArticle($article)}
 				{if $prevarticle->title != ""}

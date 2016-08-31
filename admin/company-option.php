@@ -27,7 +27,7 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="company-option.php" method="post">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">公司名称</td><td class="input"><input type="text" class="txt" name="companyname" value="<?php echo getset("companyname")->value;?>" /></td></tr>
+<tr><td class="label">公司名称</td><td class="input"><input type="text" class="txt u-ipt" name="companyname" value="<?php echo getset("companyname")->value;?>" /></td></tr>
 <tr><td class="label">公司简介<span style="color:#ff0000;">（该简介是网站首页的公司简介，如果你想修改详细的公司简介资料，请到文章管理-文章列表里面修改。）</span></td><td class="input">
 <textarea id="contentform" rows="1" cols="1" style="width:580px;height:360px;" name="companysummary"><?php echo getset("companysummary")->value;?></textarea>
 <!-- Load TinyMCE -->

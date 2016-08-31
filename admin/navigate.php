@@ -102,10 +102,10 @@ if(count($navlist)>0)
     {
        echo "<tr>".
             "<td><input id=\"slt$navinfo->navid\" type=\"checkbox\" name=\"chk[]\" value=\"$navinfo->navid\" /></td>".
-       		"<td><input type=\"text\" class=\"txt\" style=\"width:120px;\" name=\"name[$navinfo->navid]\" value=\"$navinfo->name\" /></td>".
-            "<td><input type=\"text\" class=\"txt\" style=\"width:260px;\" name=\"url[$navinfo->navid]\" value=\"$navinfo->url\" /></td>".
-            "<td><input type=\"text\" class=\"txt\" style=\"width:50px;\" name=\"order[$navinfo->navid]\" value=\"$navinfo->displayorder\" /></td>".
-       		"<td><input type=\"text\" class=\"txt\" style=\"width:80px;\" name=\"group[$navinfo->navid]\" value=\"$navinfo->group\" /></td>".
+       		"<td><input type=\"text\" class=\"txt u-ipt\" style=\"width:120px;\" name=\"name[$navinfo->navid]\" value=\"$navinfo->name\" /></td>".
+            "<td><input type=\"text\" class=\"txt u-ipt\" style=\"width:260px;\" name=\"url[$navinfo->navid]\" value=\"$navinfo->url\" /></td>".
+            "<td><input type=\"text\" class=\"txt u-ipt\" style=\"width:50px;\" name=\"order[$navinfo->navid]\" value=\"$navinfo->displayorder\" /></td>".
+       		"<td><input type=\"text\" class=\"txt u-ipt\" style=\"width:80px;\" name=\"group[$navinfo->navid]\" value=\"$navinfo->group\" /></td>".
        		"</tr>";
     } 
 }
@@ -135,10 +135,10 @@ if($curpage > 0 && $curpage < $totalpage)
 <input id="action" type="hidden" name="action" value="updated" />
 <h3>添加导航</h3>
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">链接标题</td><td class="input"><input type="text" class="txt" name="navname" /></td></tr>
-<tr><td class="label">链接地址</td><td class="input"><input type="text" class="txt" name="navurl" value="{siteurl}/" /> 注：{siteurl}=网站地址=<?php echo getset("siteurl")->value; ?></td></tr>
-<tr><td class="label">排序</td><td class="input"><input type="text" class="txt" name="navorder" /></td></tr>
-<tr><td class="label">所属分组</td><td class="input"><input type="text" class="txt" name="navgroup" /></td></tr>
+<tr><td class="label">链接标题</td><td class="input"><input type="text" class="txt u-ipt" name="navname" /></td></tr>
+<tr><td class="label">链接地址</td><td class="input"><input type="text" class="txt u-ipt" name="navurl" value="{siteurl}/" /> 注：{siteurl}=网站地址=<?php echo getset("siteurl")->value; ?></td></tr>
+<tr><td class="label">排序</td><td class="input"><input type="text" class="txt u-ipt" name="navorder" /></td></tr>
+<tr><td class="label">所属分组</td><td class="input"><input type="text" class="txt u-ipt" name="navgroup" /></td></tr>
 </table>
 <div class="clear">&nbsp;</div>
 <div class="inputsubmit"><input id="submitbtn" type="submit" class="subtn" value="提交"  onclick="$('#action').val('insert');" /></div>

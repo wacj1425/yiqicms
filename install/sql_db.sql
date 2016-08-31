@@ -229,7 +229,8 @@ INSERT INTO `yiqi_regular` (`rid`, `name`, `description`, `type`, `pid`, `value`
 (41, '添加关键词', '添加关键词', 'member', '39', 'keyword-add.php', '0', 'ok'),
 (42, '导航管理', '导航管理', 'member', '23', 'navigate.php', '0', 'ok'),
 (43, '变量管理', '变量管理', 'member', '20', 'settings.php', '0', 'ok'),
-(44, '生成HTML', '生成HTML', 'member', '20', 'option-html.php', '0', 'ok');
+(44, '生成HTML', '生成HTML', 'member', '20', 'option-html.php', '0', 'ok'),
+(44, '管理后右api', '后台Ajax返回值管理模块', 'member', '36', 'api.php', '0', 'ok');
 #<--break-->
 INSERT INTO `yiqi_settings` (`sid`, `varname`, `description`, `value`) VALUES
 (1, 'sitename', '网站名称', '易企内容管理系统'),
@@ -251,7 +252,8 @@ INSERT INTO `yiqi_settings` (`sid`, `varname`, `description`, `value`) VALUES
 (18, 'companyurl', '网站地址', '-'),
 (19, 'companyqq', '联系QQ', '请填写您的QQ'),
 (20, 'companymsn', 'MSN', '请填写您的MSN'),
-(21, 'companycontact', '联系人', '请填写您的姓名');
+(21, 'companycontact', '联系人', '请填写您的姓名'),
+(21, 'redefine', '网站301重定向', '');
 #<--break-->
 INSERT INTO `yiqi_templets` (`tid`, `name`, `directory`, `thumb`, `author`, `copyright`, `adddate`, `status`) VALUES
 (1, '默认模板', 'default', '../templets/default/preview.gif', 'YIQICMS', 'Copyright 2009 YIQICMS.com all rights reserved.', now(), 'ok'),

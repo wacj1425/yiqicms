@@ -14,7 +14,7 @@ $php_url = dirname($_SERVER['PHP_SELF']) . '/';
 //文件保存目录路径
 $save_path = YIQIROOT . '/uploads/';
 //文件保存目录URL
-$save_url = YIQIPATH . 'uploads/';
+$save_url = BASE_URL . 'uploads/';
 //定义允许上传的文件扩展名
 $ext_arr = array(
 	'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),

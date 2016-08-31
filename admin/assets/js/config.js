@@ -1,0 +1,10 @@
+seajs.config({
+	base:"module/",
+	alias:{
+		"jquery":host+"assets/lib/jquery/jquery.min.js",
+		"jqueryui":host+"assets/lib/jquery/jquery-ui.min.js",
+		"validate":host+"assets/lib/jquery/jquery.validate.min.js",
+		"validatelang":host+"assets/lib/jquery/jquery.validate_zh.js",
+	},
+});
+seajs.use("main");

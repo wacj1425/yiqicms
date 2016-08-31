@@ -32,7 +32,7 @@ if($action=='save')
     $productdescription = $_POST['productdescription'];
     $productcontent = $_POST['productcontent'];
     $producttemplets = $_POST['producttemplets'];
-    $productthumb = $_POST["productthumb"];
+    $productthumb = $_POST["thumb_product"];
     $productfilename = $_POST["productfilename"];
 	$productadddate = $_POST["productadddate"];
     if(empty($productname))
@@ -43,12 +43,8 @@ if($action=='save')
 	{
 	    $productcategory = $product->cid;
 	}
-    if(!empty($_FILES["productthumb"]["name"]))
-	{
-	    $productthumb=upimg();
-	}else if (isset($_POST['productthumb'])&&$_POST['productthumb']!=$product->thumb)
-	{
-		$productthumb = $_POST['productthumb'];
+	if (empty($productthumb)) {
+		$productthumb=$product->thumb;
 	}
 	
 	if(empty($productseotitle))
@@ -160,7 +156,7 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="" method="post" enctype="multipart/form-data">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">产品名称</td><td class="input"><input type="text" class="txt" name="productname" value="<?php echo $product->name;?>"/></td></tr>
+<tr><td class="label">产品名称</td><td class="input"><input type="text" class="txt u-ipt" name="productname" value="<?php echo $product->name;?>"/></td></tr>
 <tr><td class="label">所属分类</td><td class="input"><select name="productcategory"><?php
 $categorydata = new Category;
 $categorylist = $categorydata->GetCategoryList(0,"product");
@@ -176,23 +172,13 @@ foreach($categorylist as $category)
     }
 }
 ?></select></td></tr>
-<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt" name="productseotitle" value="<?php echo $product->seotitle;?>" /></td></tr>
-<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt" name="productkeywords" value="<?php echo $product->seokeywords;?>" /></td></tr>
-<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt" name="productdescription" style="width:200px;height:110px;"><?php echo $product->seodescription;?></textarea></td></tr>
-<tr><td class="label">缩略图</td><td class="input"><?php 
-    if($product->thumb == "-")
-    {
-        echo '您未上传缩略图,您可以上传图片 <div id="ptinfo"><input class="upfile txt" type="file" style="width:280px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setinput();" style="color:#0000cc;">输入地址</a></div>';
-    }
-    else
-    {
-        echo '您已经上传了缩略图,如果需要修改，请重新上传图片 <div id="ptinfo"><input class="upfile txt" type="file" style="width:280px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setinput();" style="color:#0000cc;">输入地址</a></div>';
-		echo '图片预览:<br /><a href="'.$product->thumb.'" target="_blank"><img src="'.$product->thumb.'" style="width:100px;height:100px;" ></a>';
-    }
-?></td></tr>
-<tr><td class="label">发布时间</td><td class="input"><input id="pubdate" type="text" class="txt" name="productadddate" value="<?php echo $product->adddate;?>" />&nbsp;&nbsp;定时发布产品，该时间为北京时间。</td></tr>
-<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt" name="productfilename" value="<?php echo $product->filename;?>" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
-<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt" name="producttemplets" value="{style}/<?php echo $product->templets;?>" /></td></tr>
+<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt u-ipt" name="productseotitle" value="<?php echo $product->seotitle;?>" /></td></tr>
+<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt u-ipt" name="productkeywords" value="<?php echo $product->seokeywords;?>" /></td></tr>
+<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt u-ipt" name="productdescription" style="width:200px;height:110px;"><?php echo $product->seodescription;?></textarea></td></tr>
+
+<tr><td class="label">发布时间</td><td class="input"><input id="pubdate" type="text" class="txt u-ipt" name="productadddate" value="<?php echo $product->adddate;?>" />&nbsp;&nbsp;定时发布产品，该时间为北京时间。</td></tr>
+<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt u-ipt" name="productfilename" value="<?php echo $product->filename;?>" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
+<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt u-ipt" name="producttemplets" value="{style}/<?php echo $product->templets;?>" /></td></tr>
 <tr><td class="label">产品介绍</td><td class="input">
 <textarea id="contentform" rows="1" cols="1" style="width:580px;height:360px;" name="productcontent"><?php echo $product->content;?></textarea>
 <!-- Load TinyMCE -->
@@ -234,7 +220,7 @@ editor('kindeditor','productcontent')
 		});
 		var extnum = <?php echo $pmcount+1;?>;
 		$("#addext").click(function(){
-			$("#exttable").append('<tr id="exttd'+extnum+'"><td class="label">附加属性'+extnum+'</td><td class="input"><input type="hidden" name="chk[]" value="'+extnum+'" />名称：<input type="text" class="txt" name="extname['+extnum+']" />&nbsp;&nbsp;值：<textarea class="txt" name="extvalue['+extnum+']"></textarea> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>');
+			$("#exttable").append('<tr id="exttd'+extnum+'"><td class="label">附加属性'+extnum+'</td><td class="input"><input type="hidden" name="chk[]" value="'+extnum+'" />名称：<input type="text" class="txt u-ipt" name="extname['+extnum+']" />&nbsp;&nbsp;值：<textarea class="txt u-ipt" name="extvalue['+extnum+']"></textarea> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>');
 			extnum++;
 		});
 	});
@@ -243,11 +229,35 @@ editor('kindeditor','productcontent')
 		$(".upfile").click();
 	};
 	function setinput(){
-		$("#ptinfo").html('<input type="text" class="txt" style="width:200px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setuploadfile();" style="color:#0000cc;">上传图片</a>');
+		$("#ptinfo").html('<input type="text" class="txt u-ipt" style="width:200px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setuploadfile();" style="color:#0000cc;">上传图片</a>');
 	};
 </script>
 <!-- /TinyMCE -->
 </td></tr>
+<tr>
+	<td class="label">
+		缩略图
+	</td>
+	<td class="input">
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<input type="text" name="thumb_product" class="u-ipt" />　
+						<button class="u-btn" id="getthumb" type="button">获取缩略图</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="<?php echo $product->thumb; ?>" target="_blank">
+							<img src="<?php echo $product->thumb; ?>">
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</td>
+</tr>
 <tr><td class="label"><a id="extattrlink" href="javascript:void(0);">隐藏附加属性</a></td><td class="input"><a href="javascript:void(0);" id="addext" class="fr">增加一个附加属性</a></td></tr>
 </table>
 <div id="extattr">
@@ -258,7 +268,7 @@ editor('kindeditor','productcontent')
 	{
 		foreach($postmeta as $metainfo)
 		{
-			echo '<tr id="exttd'.$pmc.'"><td class="label">附加属性'.$pmc.'</td><td class="input"><input type="hidden" name="chk[]" value="'.$pmc.'" /><input type="hidden" name="extid['.$pmc.']" value="'.$metainfo->metaid.'"  />名称：<input type="text" class="txt" name="extname['.$pmc.']" value="'.$metainfo->metaname.'" />&nbsp;&nbsp;值：<textarea class="txt" name="extvalue['.$pmc.']">'.$metainfo->metavalue.'</textarea> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>';
+			echo '<tr id="exttd'.$pmc.'"><td class="label">附加属性'.$pmc.'</td><td class="input"><input type="hidden" name="chk[]" value="'.$pmc.'" /><input type="hidden" name="extid['.$pmc.']" value="'.$metainfo->metaid.'"  />名称：<input type="text" class="txt u-ipt" name="extname['.$pmc.']" value="'.$metainfo->metaname.'" />&nbsp;&nbsp;值：<textarea class="txt u-ipt" name="extvalue['.$pmc.']">'.$metainfo->metavalue.'</textarea> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>';
 			$pmc++;
 		}
 	}

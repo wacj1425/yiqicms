@@ -4,6 +4,7 @@ require_once 'include/article.class.php';
 require_once 'include/keywords.class.php';
 session_start();
 $name=$_GET["name"];
+$page=(@$_GET['p'] && (@$_GET["p"] > 0)) ? @$_GET['p'] : 1;
 if(strpos($name,"http://")===0)
 {
 	header('HTTP/1.1 301 Moved Permanently');
@@ -35,6 +36,18 @@ if($article == null)
 }
 $article->content = mixkeyword($article->content);
 
+$siteurl=$tempinfo->_tpl_vars['siteurl'];
+/*分页部分代码*/
+$content_arr=explode('{!--page--}', $article->content);
+$total=count($content_arr);
+$page= ($page<=$total) ? $page : $total;
+$article->content=$content_arr[$page-1];
+if ($total>1) {
+	$article->pageinfo=pages();
+}else{
+	$article->pageinfo='';
+}
+/*分页部分结束*/
 $tempinfo->assign("article",$article);
 
 if(!$tempinfo->template_exists($article->templets))
@@ -43,4 +56,21 @@ if(!$tempinfo->template_exists($article->templets))
 }
 $articledata->UpdateCount($article->aid);
 $tempinfo->display($article->templets);
+
+function urlStr($page=1){
+	global $siteurl,$name;
+	return formaturl(['siteurl'=>$siteurl.'/','type'=>'article','name'=>$name,'page'=>$page]);
+}
+function pages(){
+	global $total,$page;
+	$str='';
+	for ($i=1; $i <= $total; $i++) { 
+		$link_str='<a href='.urlStr($i).'>'.$i.'</a>';
+		if ($i==$page) {
+			$link_str='<a href="javascript:void" class="current">'.$i.'</a>';
+		}
+		$str.=$link_str;
+	}
+	return $str;
+}
 ?>

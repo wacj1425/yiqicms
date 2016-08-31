@@ -67,14 +67,14 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="company-contact.php" method="post">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">联系人</td><td class="input"><input type="text" class="txt" name="companycontact" value="<?php echo getset("companycontact")->value;?>" /></td></tr>
-<tr><td class="label">联系电话</td><td class="input"><input type="text" class="txt" name="companyphone" value="<?php echo getset("companyphone")->value;?>" /></td></tr>
-<tr><td class="label">移动电话</td><td class="input"><input type="text" class="txt" name="companymobile" value="<?php echo getset("companymobile")->value;?>" /></td></tr>
-<tr><td class="label">传真</td><td class="input"><input type="text" class="txt" name="companyfax" value="<?php echo getset("companyfax")->value;?>" /></td></tr>
-<tr><td class="label">地址</td><td class="input"><input type="text" class="txt" name="companyaddr" value="<?php echo getset("companyaddr")->value;?>" /></td></tr>
-<tr><td class="label">电子邮箱</td><td class="input"><input type="text" class="txt" name="companyemail" value="<?php echo getset("companyemail")->value;?>" /></td></tr>
-<tr><td class="label">QQ</td><td class="input"><input type="text" class="txt" name="companyqq" value="<?php echo getset("companyqq")->value;?>" /></td></tr>
-<tr><td class="label">MSN</td><td class="input"><input type="text" class="txt" name="companymsn" value="<?php echo getset("companymsn")->value;?>" /></td></tr>
+<tr><td class="label">联系人</td><td class="input"><input type="text" class="txt u-ipt" name="companycontact" value="<?php echo getset("companycontact")->value;?>" /></td></tr>
+<tr><td class="label">联系电话</td><td class="input"><input type="text" class="txt u-ipt" name="companyphone" value="<?php echo getset("companyphone")->value;?>" /></td></tr>
+<tr><td class="label">移动电话</td><td class="input"><input type="text" class="txt u-ipt" name="companymobile" value="<?php echo getset("companymobile")->value;?>" /></td></tr>
+<tr><td class="label">传真</td><td class="input"><input type="text" class="txt u-ipt" name="companyfax" value="<?php echo getset("companyfax")->value;?>" /></td></tr>
+<tr><td class="label">地址</td><td class="input"><input type="text" class="txt u-ipt" name="companyaddr" value="<?php echo getset("companyaddr")->value;?>" /></td></tr>
+<tr><td class="label">电子邮箱</td><td class="input"><input type="text" class="txt u-ipt" name="companyemail" value="<?php echo getset("companyemail")->value;?>" /></td></tr>
+<tr><td class="label">QQ</td><td class="input"><input type="text" class="txt u-ipt" name="companyqq" value="<?php echo getset("companyqq")->value;?>" /></td></tr>
+<tr><td class="label">MSN</td><td class="input"><input type="text" class="txt u-ipt" name="companymsn" value="<?php echo getset("companymsn")->value;?>" /></td></tr>
 </table>
 <div class="clear">&nbsp;</div>
 <div class="inputsubmit"><input type="hidden" name="action" value="save" /><input id="submitbtn" type="submit" class="subtn" value="提交" /></div>

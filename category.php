@@ -6,6 +6,8 @@ require_once 'include/category.class.php';
 
 $name = $_GET["name"];
 $curpage = $_GET["p"];
+var_dump($curpage);
+die($name);
 $curpage = (isset($curpage) && is_numeric($curpage)) ? $curpage : 1;
 if($curpage<1)
 {

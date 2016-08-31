@@ -20,10 +20,16 @@ function formaturl($params)
                     $urlinfo = "category/$name/";
                 break;
             case "article":
-                $urlinfo = "article/$name.html";
+                if (is_numeric($page) && $page > 1)
+                    $urlinfo = "article/$name".'_'."$page.html";
+                else 
+                    $urlinfo = "article/$name.html";
                 break;
             case "product":
-                $urlinfo = "product/$name.html";
+                if (is_numeric($page) && $page > 1)
+                    $urlinfo = "product/$name".'_'."$page.html";
+                else
+                    $urlinfo = "product/$name.html";
                 break;
             case "catalog":
                 $urlinfo = "catalog/$name/";
@@ -47,10 +53,16 @@ function formaturl($params)
                     $urlinfo = "category.php?name=$name";
                 break;
             case "article":
-                $urlinfo = "article.php?name=$name";
+                if (is_numeric($page) && $page > 1)
+                    $urlinfo = "article.php?name=$name&p=$page";
+                else
+                    $urlinfo = "article.php?name=$name";
                 break;
             case "product":
-                $urlinfo = "product.php?name=$name";
+                if (is_numeric($page) && $page > 1)
+                    $urlinfo = "product.php?name=$name&p=$page";
+                else
+                    $urlinfo = "product.php?name=$name";
                 break;
             case "catalog":
                 $urlinfo = "catalog.php?type=$name";

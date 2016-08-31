@@ -105,7 +105,7 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="" method="post">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">分类名称</td><td class="input"><input type="text" class="txt" name="categoryname" /></td></tr>
+<tr><td class="label">分类名称</td><td class="input"><input type="text" class="txt u-ipt" name="categoryname" /></td></tr>
 <tr><td class="label">上级分类</td><td class="input"><select name="parentcategory">
 <option value="0">设为顶级分类</option>
 <?php
@@ -134,13 +134,13 @@ else
 }
 ?>
 </select></td></tr>
-<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt" name="categoryseotitle" /></td></tr>
-<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt" name="categoryseokeywords" /></td></tr>
-<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt" name="categoryseodescription" style="width:200px;height:110px;"></textarea></td></tr>
-<tr><td class="label">分类介绍</td><td class="input"><textarea class="txt" name="categorydescription" style="width:200px;height:110px;"></textarea></td></tr>
-<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt" name="categoryfilename" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
-<tr><td class="label">显示数量</td><td class="input"><input type="text" class="txt" name="categorytakenumber" value="24" /></td></tr>
-<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt" name="categorytemplets" value="{style}/category.tpl" /></td></tr>
+<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt u-ipt" name="categoryseotitle" /></td></tr>
+<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt u-ipt" name="categoryseokeywords" /></td></tr>
+<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt u-ipt" name="categoryseodescription" style="width:200px;height:110px;"></textarea></td></tr>
+<tr><td class="label">分类介绍</td><td class="input"><textarea class="txt u-ipt" name="categorydescription" style="width:200px;height:110px;"></textarea></td></tr>
+<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt u-ipt" name="categoryfilename" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
+<tr><td class="label">显示数量</td><td class="input"><input type="text" class="txt u-ipt" name="categorytakenumber" value="24" /></td></tr>
+<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt u-ipt" name="categorytemplets" value="{style}/category.tpl" /></td></tr>
 </table>
 <div class="clear">&nbsp;</div>
 <div class="inputsubmit"><input type="hidden" name="action" value="save" /><input id="submitbtn" type="submit" class="subtn" value="提交" /></div>

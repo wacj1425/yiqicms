@@ -1,7 +1,6 @@
 <?php
 require_once 'admin.inc.php';
 require_once '../include/file.class.php';
-
 $action = $_POST["action"];
 if($action == "save")
 {
@@ -15,10 +14,12 @@ if($action == "save")
         		 "RewriteBase ".YIQIPATH."\n".
                  "RewriteCond %{REQUEST_FILENAME} !-f\n".
                  "RewriteCond %{REQUEST_FILENAME} !-d\n".
-                 "RewriteRule ^article\/(.+)\.html$ article.php?name=$1 [L]\n".
-                 "RewriteRule ^product\/(.+)\.html$ product.php?name=$1 [L]\n".
+                 "RewriteRule ^article\/([^/_]+)\.html$ article.php?name=$1 [L]\n".
+                 "RewriteRule ^article\/([^/_]+)_([0-9]+)\.html$ article.php?name=$1&p=$2 [L]\n".
+                 "RewriteRule ^product\/([^/_]+)\.html$ product.php?name=$1 [L]\n".
+                 "RewriteRule ^product\/([^/_]+)_([0-9]+)\.html$ product.php?name=$1&p=$2 [L]\n".
                  "RewriteRule ^category\/([^/_]+)[/]?$ category.php?name=$1 [L]\n".
-				 "RewriteRule ^category\/([^/]+)_([0-9]+)[/]?$ category.php?name=$1&p=$2 [L]\n".                 
+				 "RewriteRule ^category\/([^/]+)_([0-9]+)[/]?$ category.php?name=$1&p=$2 [L]\n".
                  "RewriteRule ^comment.html$ comment.php [L]\n".
 				 "RewriteRule ^sitemap.xml$ sitemap.php [L]\n".
                  "</IfModule>";        
@@ -39,10 +40,22 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="option-url.php" method="post">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label"><input name="url" type="radio" value="false"/>关闭URL重写</td><td class="input">链接样式: /article.php?name=abc</td></tr>
-<tr><td class="label"><input name="url" type="radio" value="true" />开启URL重写</td><td class="input">链接样式: /article/abc.html</td></tr>
-<tr><td class="label"><input name="url" type="radio" value="html"/>生成HTML</td><td class="input">链接样式: /article/abc.html，发布文章或产品时将会自动生成HTML文件。</td></tr>
-<tr><td class="label">URL重写提示：</a><td class="input" style="color:#ff0000;">如果您开启URL重写之后，无法正常打开网页，请参考 <a href="http://www.yiqicms.com/article/url-rewrite-guide.html" target="_blank">URL重写（伪静态）指南</a></td></tr>
+    <tr>
+        <td class="label"><input name="url" type="radio" class="f-vlm" id="shut" value="false"/> <label for="shut">关闭URL重写</label></td>
+        <td class="input">链接样式: /article.php?name=abc</td>
+    </tr>
+    <tr>
+        <td class="label"><input name="url" type="radio" class="f-vam" id="open" value="true" /> <label for="open">开启URL重写</label> </td>
+        <td class="input">链接样式: /article/abc.html</td>
+    </tr>
+    <tr>
+        <td class="label"><input name="url" type="radio"  value="html"/> 生成HTML</td>
+        <td class="input">链接样式: /article/abc.html，发布文章或产品时将会自动生成HTML文件。</td>
+    </tr>
+    <tr>
+        <td class="label">URL重写提示：</a>
+        <td class="input" style="color:#ff0000;">如果您开启URL重写之后，无法正常打开网页，请参考 <a href="http://www.yiqicms.com/article/url-rewrite-guide.html" target="_blank">URL重写（伪静态）指南</a></td>
+    </tr>
 </table>
 <div class="clear">&nbsp;</div>
 <div class="inputsubmit"><input type="hidden" name="action" value="save" /><input id="submitbtn" type="submit" class="subtn" value="提交" /></div>

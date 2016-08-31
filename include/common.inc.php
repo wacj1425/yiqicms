@@ -3,6 +3,7 @@
 define("YIQIINC",preg_replace("/[\/\\\\]{1,}/i", '/', dirname(__FILE__) ));
 define("YIQIROOT",preg_replace("/[\/\\\\]{1,}/i", '/', substr(YIQIINC,0,-8) ));
 define("YIQIPATH", str_replace(GetRootPath(), "", YIQIROOT.'/'));
+define("BASE_URL",'http://'.$_SERVER["HTTP_HOST"].YIQIPATH);
 header("content-type:text/html; charset=utf-8");
 error_reporting(E_ALL ^ E_NOTICE);
 

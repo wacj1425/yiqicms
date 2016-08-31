@@ -24,10 +24,24 @@ if(count($settinglist)>0)
 {
     foreach($settinglist as $settinginfo)
     {
-        $tempinfo->assign($settinginfo->varname,$settinginfo->value);
+        if ($settinginfo->varname=='redefine') {
+        	$set_301=json_decode($settinginfo->value);//301设置不对前台输出
+        }else{
+        	$tempinfo->assign($settinginfo->varname,$settinginfo->value);
+        }
     }
 }
-
+/*网站301跳转*/
+if ($set_301->set=="open") {//如果开启301则进行301跳转
+	$site_host=$_SERVER['HTTP_HOST'];
+	$current_url=isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+	if ($site_host!=$set_301->url) {
+		header("HTTP/1.1 301 Moved permanently");
+		header("Location:http://".$set_301->url.$current_url);
+		die();
+	}
+}
+/*网站301跳转结束*/
 $categorydata = new Category;
 $categorylist = $categorydata->GetSubCategory(0,"product");
 $tempinfo->assign("categorylist",$categorylist);

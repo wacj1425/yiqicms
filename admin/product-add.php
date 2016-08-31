@@ -15,7 +15,7 @@ if($action=='save')
     $producttemplets = $_POST['producttemplets'];
     $productfilename = $_POST['productfilename'];
 	$productadddate = $_POST['productadddate'];
-    $productthumb = "-";
+    $productthumb = $_POST['thumb_product'];
     if(empty($productname))
     {
         exit("产品名称不能为空");
@@ -24,13 +24,10 @@ if($action=='save')
 	{
 	    exit("请选择正确的产品分类");
 	}
-    if(!empty($_FILES["productthumb"]["name"]))
-	{
-		$productthumb=upimg();
-	}else if (isset($_POST['productthumb']))
-	{
-		$productthumb = $_POST['productthumb'];
+	if (empty($productthumb)) {
+		die("缩略图不能为空");
 	}
+
 	if(empty($productseotitle))
 	{
 	    $productseotitle = $productname;
@@ -122,7 +119,7 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="product-add.php" method="post" enctype="multipart/form-data">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">产品名称</td><td class="input"><input type="text" class="txt" name="productname" /></td></tr>
+<tr><td class="label">产品名称</td><td class="input"><input type="text" class="txt u-ipt" name="productname" /></td></tr>
 <tr><td class="label">所属分类</td><td class="input"><select name="productcategory">
 <option value="0">请选择</option><?php
 $categorydata = new Category;
@@ -132,13 +129,12 @@ foreach($categorylist as $category)
 	echo "<option value=\"".$category->cid."\">".$category->name."</option>";
 }
 ?></select></td></tr>
-<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt" name="productseotitle" /></td></tr>
-<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt" name="productkeywords" /></td></tr>
-<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt" name="productdescription" style="width:200px;height:110px;"></textarea></td></tr>
-<tr><td class="label">缩略图</td><td class="input"><div id="ptinfo"><input class="upfile txt" type="file" style="width:280px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setinput();" style="color:#0000cc;">输入地址</a></div></td></tr>
-<tr><td class="label">发布时间</td><td class="input"><input id="pubdate" type="text" class="txt" name="productadddate" value="<?php echo date("Y-m-d H:i:s"); ?>"  />&nbsp;&nbsp;定时发布产品，该时间为北京时间。</td></tr>
-<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt" name="productfilename" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
-<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt" name="producttemplets" value="{style}/product.tpl" /></td></tr>
+<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt u-ipt" name="productseotitle" /></td></tr>
+<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt u-ipt" name="productkeywords" /></td></tr>
+<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt u-ipt" name="productdescription" style="width:200px;height:110px;"></textarea></td></tr>
+<tr><td class="label">发布时间</td><td class="input"><input id="pubdate" type="text" class="txt u-ipt" name="productadddate" value="<?php echo date("Y-m-d H:i:s"); ?>"  />&nbsp;&nbsp;定时发布产品，该时间为北京时间。</td></tr>
+<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt u-ipt" name="productfilename" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
+<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt u-ipt" name="producttemplets" value="{style}/product.tpl" /></td></tr>
 <tr><td class="label">产品介绍</td><td class="input">
 <textarea id="contentform" rows="1" cols="1" style="width:580px;height:360px;" name="productcontent"></textarea>
 <!-- Load TinyMCE -->
@@ -160,6 +156,7 @@ editor('kindeditor','productcontent')
 					$("#sform").resetForm();
 					var now = new Date();
 					$("#pubdate").val(now.format("yyyy-mm-dd HH:MM:ss"));
+					window.location.href="product.php";
 				}
 				$("#submitbtn").val("提交");
 				$("#submitbtn").attr("disabled","");
@@ -187,7 +184,7 @@ editor('kindeditor','productcontent')
 		$("#addext").click(function(){
 			$("#extattr").show();
 			$("#extattrlink").text('隐藏附加属性');
-			$("#exttable").append('<tr id="exttd'+extnum+'"><td class="label">附加属性'+extnum+'</td><td class="input"><input type="hidden" name="chk[]" value="'+extnum+'" />名称：<input type="text" class="txt" name="extname['+extnum+']" />&nbsp;&nbsp;值：<input type="text" class="txt" name="extvalue['+extnum+']" /> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>');
+			$("#exttable").append('<tr id="exttd'+extnum+'"><td class="label">附加属性'+extnum+'</td><td class="input"><input type="hidden" name="chk[]" value="'+extnum+'" />名称：<input type="text" class="txt u-ipt" name="extname['+extnum+']" />&nbsp;&nbsp;值：<input type="text" class="txt u-ipt" name="extvalue['+extnum+']" /> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>');
 			extnum++;
 		});
 	});
@@ -196,15 +193,24 @@ editor('kindeditor','productcontent')
 		$(".upfile").click();
 	};
 	function setinput(){
-		$("#ptinfo").html('<input type="text" class="txt" style="width:200px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setuploadfile();" style="color:#0000cc;">上传图片</a>');
+		$("#ptinfo").html('<input type="text" class="txt u-ipt" style="width:200px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setuploadfile();" style="color:#0000cc;">上传图片</a>');
 	};
 </script>
 <!-- /TinyMCE -->
+<tr>
+	<td class="label">
+		缩略图
+	</td>
+	<td class="input">
+		<input type="text" name="thumb_product" class="u-ipt" />　
+		<button class="u-btn" id="getthumb" type="button">获取缩略图</button>
+	</td>
+</tr>
 <tr><td class="label"><a id="extattrlink" href="javascript:void(0);">显示附加属性</a></td><td class="input"><a href="javascript:void(0);" id="addext" class="fr">增加一个附加属性</a></td></tr>
 </table>
 <div id="extattr">
 <table id="exttable" class="inputform" cellpadding="1" cellspacing="1" style="margin-top:10px;">
-<tr id="exttd1"><td class="label">附加属性1</td><td class="input"><input type="hidden" name="chk[]" value="1" />名称：<input type="text" class="txt" name="extname[1]" />&nbsp;&nbsp;值：<textarea class="txt" name="extvalue[1]"></textarea></td></tr>
+<tr id="exttd1"><td class="label">附加属性1</td><td class="input"><input type="hidden" name="chk[]" value="1" />名称：<input type="text" class="txt u-ipt" name="extname[1]" />&nbsp;&nbsp;值：<textarea class="txt u-ipt" name="extvalue[1]"></textarea></td></tr>
 </table>
 </div>
 <div class="clear">&nbsp;</div>

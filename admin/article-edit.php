@@ -32,7 +32,7 @@ if($action=='save')
     $articledescription = $_POST['articledescription'];
     $articlecontent = $_POST['articlecontent'];
     $articletemplets = $_POST['articletemplets'];
-    $articlethumb = $_POST["productthumb"];
+    $articlethumb = $_POST["thumb_article"];
     $articlefilename = $_POST['articlefilename'];
 	$articleadddate = $_POST['articleadddate'];
     if(empty($articletitle))
@@ -43,13 +43,16 @@ if($action=='save')
 	{
 	    $articlecategory = $article->cid;
 	}
-    if(!empty($_FILES["productthumb"]["name"]))
+	if (empty($articlethumb)) {
+		$articlethumb=$article->thumb;
+	}
+/*    if(!empty($_FILES["productthumb"]["name"]))
 	{
 	    $articlethumb=upimg();
 	}else if (isset($_POST['productthumb'])&&$_POST['productthumb']!=$product->thumb)
 	{
 		$articlethumb = $_POST['productthumb'];
-	}
+	}*/
 
 	if(empty($articleseotitle))
 	{
@@ -163,7 +166,7 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="" method="post">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">文章标题</td><td class="input"><input type="text" class="txt" name="articletitle" value="<?php echo $article->title;?>" /></td></tr>
+<tr><td class="label">文章标题</td><td class="input"><input type="text" class="txt u-ipt" name="articletitle" value="<?php echo $article->title;?>" /></td></tr>
 <tr><td class="label">所属分类</td><td class="input"><select name="articlecategory">
 <?php
 $categorydata = new Category;
@@ -181,23 +184,13 @@ foreach($categorylist as $category)
 }
 ?>
 </select></td></tr>
-<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt" name="articleseotitle" value="<?php echo $article->seotitle;?>" /></td></tr>
-<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt" name="articlekeywords" value="<?php echo $article->seokeywords;?>" /></td></tr>
-<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt" name="articledescription" style="width:200px;height:110px;"><?php echo $article->seodescription;?></textarea></td></tr>
-<tr><td class="label">缩略图</td><td class="input"><?php 
-    if($article->thumb == "-"||!$article->thumb)
-    {
-        echo '您未上传缩略图,您可以上传图片 <div id="ptinfo"><input class="upfile txt" type="file" style="width:280px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setinput();" style="color:#0000cc;">输入地址</a></div>';
-    }
-    else
-    {
-        echo '您已经上传了缩略图,如果需要修改，请重新上传图片 <div id="ptinfo"><input class="upfile txt" type="file" style="width:280px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setinput();" style="color:#0000cc;">输入地址</a></div>';
-		echo '图片预览:<br /><a href="'.$article->thumb.'" target="_blank"><img src="'.$article->thumb.'" style="width:100px;height:100px;" ></a>';
-    }
-?></td></tr>
-<tr><td class="label">发布时间</td><td class="input"><input id="pubdate" type="text" class="txt" name="articleadddate" value="<?php echo $article->adddate;?>" />&nbsp;&nbsp;定时发布文章，该时间为北京时间。</td></tr>
-<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt" name="articlefilename" value="<?php echo $article->filename;?>" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
-<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt" name="articletemplets" value="{style}/<?php echo $article->templets;?>" /></td></tr>
+<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt u-ipt" name="articleseotitle" value="<?php echo $article->seotitle;?>" /></td></tr>
+<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt u-ipt" name="articlekeywords" value="<?php echo $article->seokeywords;?>" /></td></tr>
+<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt u-ipt" name="articledescription" style="width:200px;height:110px;"><?php echo $article->seodescription;?></textarea></td></tr>
+
+<tr><td class="label">发布时间</td><td class="input"><input id="pubdate" type="text" class="txt u-ipt" name="articleadddate" value="<?php echo $article->adddate;?>" />&nbsp;&nbsp;定时发布文章，该时间为北京时间。</td></tr>
+<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt u-ipt" name="articlefilename" value="<?php echo $article->filename;?>" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
+<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt u-ipt" name="articletemplets" value="{style}/<?php echo $article->templets;?>" /></td></tr>
 <tr><td class="label">文章内容</td><td class="input">
 <textarea id="contentform" rows="1" cols="1" style="width:580px;height:360px;" name="articlecontent"><?php echo $article->content;?></textarea>
 <!-- Load TinyMCE -->
@@ -239,13 +232,37 @@ editor('kindeditor','articlecontent')
 		});
 		var extnum = <?php echo $pmcount+1;?>;
 		$("#addext").click(function(){
-			$("#exttable").append('<tr id="exttd'+extnum+'"><td class="label">附加属性'+extnum+'</td><td class="input"><input type="hidden" name="chk[]" value="'+extnum+'" />名称：<input type="text" class="txt" name="extname['+extnum+']" />&nbsp;&nbsp;值：<textarea class="txt" name="extvalue['+extnum+']"></textarea> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>');
+			$("#exttable").append('<tr id="exttd'+extnum+'"><td class="label">附加属性'+extnum+'</td><td class="input"><input type="hidden" name="chk[]" value="'+extnum+'" />名称：<input type="text" class="txt u-ipt" name="extname['+extnum+']" />&nbsp;&nbsp;值：<textarea class="txt u-ipt" name="extvalue['+extnum+']"></textarea> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>');
 			extnum++;
 		});
 	});
 </script>
 <!-- /TinyMCE -->
 </td></tr>
+<tr>
+	<td class="label">
+		缩略图
+	</td>
+	<td class="input">
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+						<input type="text" name="thumb_artile" class="u-ipt" />　
+						<button class="u-btn" id="getthumb" type="button">获取缩略图</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="<?php echo $article->thumb; ?>" target="_blank">
+							<img src="<?php echo $article->thumb; ?>">
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</td>
+</tr>
 <tr><td class="label"><a id="extattrlink" href="javascript:void(0);">隐藏附加属性</a></td><td class="input"><a href="javascript:void(0);" id="addext" class="fr">增加一个附加属性</a></td></tr>
 </table>
 <div id="extattr">
@@ -256,7 +273,7 @@ editor('kindeditor','articlecontent')
 	{
 		foreach($postmeta as $metainfo)
 		{
-			echo '<tr id="exttd'.$pmc.'"><td class="label">附加属性'.$pmc.'</td><td class="input"><input type="hidden" name="chk[]" value="'.$pmc.'" /><input type="hidden" name="extid['.$pmc.']" value="'.$metainfo->metaid.'"  />名称：<input type="text" class="txt" name="extname['.$pmc.']" value="'.$metainfo->metaname.'" />&nbsp;&nbsp;值：<textarea class="txt" name="extvalue['.$pmc.']">'.$metainfo->metavalue.'</textarea> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>';
+			echo '<tr id="exttd'.$pmc.'"><td class="label">附加属性'.$pmc.'</td><td class="input"><input type="hidden" name="chk[]" value="'.$pmc.'" /><input type="hidden" name="extid['.$pmc.']" value="'.$metainfo->metaid.'"  />名称：<input type="text" class="txt u-ipt" name="extname['.$pmc.']" value="'.$metainfo->metaname.'" />&nbsp;&nbsp;值：<textarea class="txt u-ipt" name="extvalue['.$pmc.']">'.$metainfo->metavalue.'</textarea> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>';
 			$pmc++;
 		}
 	}

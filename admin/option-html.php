@@ -1,4 +1,5 @@
 <?php
+require_once '../include/disable.php';
 require_once 'admin.inc.php';
 require_once '../include/article.class.php';
 require_once '../include/product.class.php';

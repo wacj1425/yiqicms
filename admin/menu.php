@@ -14,6 +14,7 @@ if(count($regularlist) > 0)
         $subregularlist = GetRegular($regularinfo->rid);
         if(count($subregularlist) > 0)
         {
+            $regularinfo->value=($regularinfo->value=='#') ? "javascript:void(0);" : $regularinfo->value;
             echo "<dt class=\"submenuheader\" style=\"cursor:pointer;\"><img src=\"../images/plus.gif\" alt=\"查看子分类\" title=\"查看子分类\"/>&nbsp;&nbsp;<a href=\"$regularinfo->value\">$regularinfo->name</a></dt>";
             echo "<dd><div class=\"submenu\"><ul>";
             foreach($subregularlist as $subregular)

@@ -34,7 +34,7 @@ function array_remove_value ()
   $args = func_get_args();
   return array_diff($args[0],array_slice($args,1));
 }
-	
+/*关键词替换函数*/	
 function mixkeyword($contentsource) {
 	$keywordsdata = new Keywords();
 	$keywordslist = $keywordsdata->GetKeywordsList();
@@ -76,5 +76,29 @@ function mixkeyword($contentsource) {
 		}
 	}
 	return $contentsource;
+}
+/**
+ 判断是否是GET提交的
+ */
+function isGet(){
+  return $_SERVER['REQUEST_METHOD'] == 'GET' ? true : false;
+}
+
+/**
+ 是否是POST提交
+ @return int
+ */
+function isPost() {
+    return ($_SERVER['REQUEST_METHOD'] == 'POST' && (empty($_SERVER['HTTP_REFERER']) || preg_replace("~https?:\/\/([^\:\/]+).*~i", "\\1", $_SERVER['HTTP_REFERER']) == preg_replace("~([^\:]+).*~", "\\1", $_SERVER['HTTP_HOST']))) ? 1 : 0;
+}
+/**
+是否ajax提交
+*/
+function isAjax(){
+    if(isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=="xmlhttprequest"){ 
+        return true;
+    }else{
+        return false;
+    }
 }
 ?>

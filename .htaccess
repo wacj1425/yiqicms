@@ -1,0 +1,14 @@
+ <IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^article\/([^/_]+)\.html$ article.php?name=$1 [L]
+RewriteRule ^article\/([^/_]+)_([0-9]+)\.html$ article.php?name=$1&p=$2 [L]
+RewriteRule ^product\/([^/_]+)\.html$ product.php?name=$1 [L]
+RewriteRule ^product\/([^/_]+)_([0-9]+)\.html$ product.php?name=$1&p=$2 [L]
+RewriteRule ^category\/([^/_]+)[/]?$ category.php?name=$1 [L]
+RewriteRule ^category\/([^/]+)_([0-9]+)[/]?$ category.php?name=$1&p=$2 [L]
+RewriteRule ^comment.html$ comment.php [L]
+RewriteRule ^sitemap.xml$ sitemap.php [L]
+</IfModule>

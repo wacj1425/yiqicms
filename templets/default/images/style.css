@@ -189,3 +189,23 @@ a:hover
 	float:left;
 	padding-right:10px;
 }
+/*分页*/
+.page{
+	text-align: center;
+}
+.page a{
+	border: 1px solid #cdcdcd;
+	display: inline-block;
+	text-align: center;
+	text-indent: 0;
+	padding: 0 5px;
+	margin-left: 5px;
+}
+.page a:hover{
+	background: #0099ff;
+	color: #fff;
+}
+.page a.current,.page a.current:hover{
+	background: #cdcdcd;
+	color: #000;
+}

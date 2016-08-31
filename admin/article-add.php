@@ -15,7 +15,8 @@ if($action=='save')
     $articlefilename = $_POST['articlefilename'];
 	$articleadddate = $_POST['articleadddate'];
     $articletemplets = $_POST['articletemplets'];
-    $articlethumb='-';
+    //$articlethumb='-';
+    $articlethumb=$_POST['thumb_artile'];
     if(empty($articletitle))
     {
         exit("文章标题不能为空");
@@ -24,13 +25,15 @@ if($action=='save')
 	{
 	    exit("请选择正确的文章分类");
 	}
-    if(!empty($_FILES["productthumb"]["name"]))
+
+/*    if(!empty($_FILES["productthumb"]["name"]))
 	{
 		$articlethumb=upimg();
 	}else if (isset($_POST['productthumb']))
 	{
 		$articlethumb = $_POST['productthumb'];
-	}
+	}*/
+
 	if(empty($articleseotitle))
 	{
 	    $articleseotitle = $articletitle;
@@ -121,7 +124,7 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="article-add.php" method="post">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">文章标题</td><td class="input"><input type="text" class="txt" name="articletitle" /></td></tr>
+<tr><td class="label">文章标题</td><td class="input"><input type="text" class="txt u-ipt" name="articletitle" /></td></tr>
 <tr><td class="label">所属分类</td><td class="input"><select name="articlecategory">
 <option value="0">请选择</option>
 <?php
@@ -132,13 +135,13 @@ foreach($categorylist as $category)
 	echo "<option value=\"".$category->cid."\">".$category->name."</option>";
 }
 ?></select></td></tr>
-<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt" name="articleseotitle" /></td></tr>
-<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt" name="articlekeywords" /></td></tr>
-<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt" name="articledescription" style="width:200px;height:110px;"></textarea></td></tr>
-<tr><td class="label">缩略图</td><td class="input"><div id="ptinfo"><input class="upfile txt" type="file" style="width:280px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setinput();" style="color:#0000cc;">输入地址</a></div></td></tr>
-<tr><td class="label">发布时间</td><td class="input"><input id="pubdate" type="text" class="txt" name="articleadddate" value="<?php echo date("Y-m-d H:i:s"); ?>" />&nbsp;&nbsp;定时发布文章，该时间为北京时间。</td></tr>
-<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt" name="articlefilename" value="" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
-<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt" name="articletemplets" value="{style}/article.tpl" /></td></tr>
+<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt u-ipt" name="articleseotitle" /></td></tr>
+<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt u-ipt" name="articlekeywords" /> <button type="button" class="u-btn" id="getkeywords">自动取关键词</button></td></tr>
+<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt u-ipt" name="articledescription" style="width:200px;height:110px;"></textarea></td></tr>
+
+<tr><td class="label">发布时间</td><td class="input"><input id="pubdate" type="text" class="txt u-ipt" name="articleadddate" value="<?php echo date("Y-m-d H:i:s"); ?>" />&nbsp;&nbsp;定时发布文章，该时间为北京时间。</td></tr>
+<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt u-ipt" name="articlefilename" value="" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
+<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt u-ipt" name="articletemplets" value="{style}/article.tpl" /></td></tr>
 <tr><td class="label">文章内容</td><td class="input">
 <textarea id="contentform" rows="1" cols="1" style="width:580px;height:360px;" name="articlecontent"></textarea>
 <?php 
@@ -159,6 +162,7 @@ editor('kindeditor','articlecontent')
 					$("#sform").resetForm();
 					var now = new Date();
 					$("#pubdate").val(now.format("yyyy-mm-dd HH:MM:ss"));
+					window.location.href="article.php";
 				}
 				$("#submitbtn").val("提交");
 				$("#submitbtn").attr("disabled","");
@@ -186,25 +190,34 @@ editor('kindeditor','articlecontent')
 		$("#addext").click(function(){
 			$("#extattr").show();
 			$("#extattrlink").text('隐藏附加属性');
-			$("#exttable").append('<tr id="exttd'+extnum+'"><td class="label">附加属性'+extnum+'</td><td class="input"><input type="hidden" name="chk[]" value="'+extnum+'" />名称：<input type="text" class="txt" name="extname['+extnum+']" />&nbsp;&nbsp;值：<input type="text" class="txt" name="extvalue['+extnum+']" /> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>');
+			$("#exttable").append('<tr id="exttd'+extnum+'"><td class="label">附加属性'+extnum+'</td><td class="input"><input type="hidden" name="chk[]" value="'+extnum+'" />名称：<input type="text" class="txt u-ipt" name="extname['+extnum+']" />&nbsp;&nbsp;值：<input type="text" class="txt u-ipt" name="extvalue['+extnum+']" /> <a href="javascript:void(0);" onclick="$(this).parent().parent().remove();">删除</a></td></tr>');
 			extnum++;
 		});
 	});
-	function setuploadfile(){
+/*	function setuploadfile(){
 		$("#ptinfo").html('<input class="upfile txt" type="file" style="width:280px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setinput();" style="color:#0000cc;">输入地址</a>');
 		$(".upfile").click();
 	};
 	function setinput(){
-		$("#ptinfo").html('<input type="text" class="txt" style="width:200px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setuploadfile();" style="color:#0000cc;">上传图片</a>');
-	};
+		$("#ptinfo").html('<input type="text" class="txt u-ipt" style="width:200px;" name="productthumb" /> 或者 <a href="javascript:void(0);" onclick="setuploadfile();" style="color:#0000cc;">上传图片</a>');
+	};*/
 </script>
 <!-- /TinyMCE -->
 </td></tr>
+<tr>
+	<td class="label">
+		缩略图
+	</td>
+	<td class="input">
+		<input type="text" name="thumb_artile" class="u-ipt" />　
+		<button class="u-btn" id="getthumb" type="button">获取缩略图</button>
+	</td>
+</tr>
 <tr><td class="label"><a id="extattrlink" href="javascript:void(0);">显示附加属性</a></td><td class="input"><a href="javascript:void(0);" id="addext" class="fr">增加一个附加属性</a></td></tr>
 </table>
 <div id="extattr">
 <table id="exttable" class="inputform" cellpadding="1" cellspacing="1" style="margin-top:10px;">
-<tr id="exttd1"><td class="label">附加属性1</td><td class="input"><input type="hidden" name="chk[]" value="1" />名称：<input type="text" class="txt" name="extname[1]" />&nbsp;&nbsp;值：<textarea class="txt" name="extvalue[1]"></textarea></td></tr>
+<tr id="exttd1"><td class="label">附加属性1</td><td class="input"><input type="hidden" name="chk[]" value="1" />名称：<input type="text" class="txt u-ipt" name="extname[1]" />&nbsp;&nbsp;值：<textarea class="txt u-ipt" name="extvalue[1]"></textarea></td></tr>
 </table>
 </div>
 <div class="clear">&nbsp;</div>

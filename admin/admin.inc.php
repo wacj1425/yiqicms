@@ -1,4 +1,13 @@
 <?php
+/**
+*date:2016-08-14
+*author:lvlo_master
+*添加后台全局变量
+*/
+$host='http://'.$_SERVER["HTTP_HOST"];
+$current_url=$host.$_SERVER['SCRIPT_NAME'];
+$admin_url=str_replace(basename($_SERVER['SCRIPT_NAME']), '', $current_url);
+/**添加后台全局变量*/
 require_once '../include/common.inc.php';
 require_once 'userauth.php';
 function getset($varname)

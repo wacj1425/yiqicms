@@ -140,7 +140,7 @@ include("admin.header.php");?>
 <div class="main_body">
 <form id="sform" action="" method="post">
 <table class="inputform" cellpadding="1" cellspacing="1">
-<tr><td class="label">分类名称</td><td class="input"><input type="text" class="txt" name="categoryname" value="<?php echo $catinfo->name;?>" /></td></tr>
+<tr><td class="label">分类名称</td><td class="input"><input type="text" class="txt u-ipt" name="categoryname" value="<?php echo $catinfo->name;?>" /></td></tr>
 <tr><td class="label">分类类型</td><td class="input"><select name="categorytype">
 <?php 
 if($categorytype=="article")
@@ -153,13 +153,13 @@ else
 }
 ?>
 </select></td></tr>
-<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt" name="categoryseotitle" value="<?php echo $catinfo->seotitle;?>" /></td></tr>
-<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt" name="categoryseokeywords" value="<?php echo $catinfo->seokeywords;?>" /></td></tr>
-<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt" name="categoryseodescription" style="width:200px;height:110px;"><?php echo $catinfo->seodescription;?></textarea></td></tr>
-<tr><td class="label">分类介绍</td><td class="input"><textarea class="txt" name="categorydescription" style="width:200px;height:110px;"><?php echo $catinfo->description;?></textarea></td></tr>
-<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt" name="categoryfilename" value="<?php echo $catinfo->filename;?>" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
-<tr><td class="label">显示数量</td><td class="input"><input type="text" class="txt" name="categorytakenumber" value="<?php echo $catinfo->takenumber;?>" /></td></tr>
-<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt" name="categorytemplets" value="{style}/<?php echo $catinfo->templets;?>" /></td></tr>
+<tr><td class="label">SEO标题</td><td class="input"><input type="text" class="txt u-ipt" name="categoryseotitle" value="<?php echo $catinfo->seotitle;?>" /></td></tr>
+<tr><td class="label">SEO关键词</td><td class="input"><input type="text" class="txt u-ipt" name="categoryseokeywords" value="<?php echo $catinfo->seokeywords;?>" /></td></tr>
+<tr><td class="label">SEO描述</td><td class="input"><textarea class="txt u-ipt" name="categoryseodescription" style="width:200px;height:110px;"><?php echo $catinfo->seodescription;?></textarea></td></tr>
+<tr><td class="label">分类介绍</td><td class="input"><textarea class="txt u-ipt" name="categorydescription" style="width:200px;height:110px;"><?php echo $catinfo->description;?></textarea></td></tr>
+<tr><td class="label">自定义文件名</td><td class="input"><input type="text" class="txt u-ipt" name="categoryfilename" value="<?php echo $catinfo->filename;?>" />&nbsp;&nbsp;设置为http://开头，将链接到指定的地址。</td></tr>
+<tr><td class="label">显示数量</td><td class="input"><input type="text" class="txt u-ipt" name="categorytakenumber" value="<?php echo $catinfo->takenumber;?>" /></td></tr>
+<tr><td class="label">默认模板</td><td class="input"><input type="text" class="txt u-ipt" name="categorytemplets" value="{style}/<?php echo $catinfo->templets;?>" /></td></tr>
 </table>
 <div class="clear">&nbsp;</div>
 <div class="inputsubmit"><input type="hidden" name="action" value="save" /><input id="submitbtn" type="submit" class="subtn" value="提交" /></div>

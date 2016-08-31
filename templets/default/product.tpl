@@ -40,6 +40,11 @@
 				</div>
 				<div class="clear">&nbsp;</div>
 				<div class="content">{$product->content}</div>
+				<div class="clear">&nbsp;</div>
+				<div class="page">
+					{$product->pageinfo}
+				</div>
+				<div class="clear">&nbsp;</div>
 			</div>
 		</div>
 	</div>
