@@ -1,0 +1,249 @@
+﻿*
+{
+	margin:0px;
+	padding:0px;
+}
+body
+{
+	font-size:12px;
+	line-height:25px;
+}
+img
+{
+	border:0px;
+}
+a:link,a:visited
+{
+	color:#000;
+	text-decoration:none;
+}
+a:hover
+{
+	text-decoration:underline;
+}
+li
+{
+	list-style-type:none;
+	
+}
+.tl
+{
+	text-align:left;
+}
+.tc
+{
+	text-align:center;
+}
+.tr
+{
+	text-align:right;
+}
+.fl
+{	
+	float:left;
+}
+.fr
+{	
+	float:right;
+}
+.m10
+{
+	margin:10px;
+	padding:10px;
+}
+.w10
+{
+	width:10%;
+}
+.w20
+{
+	width:20%;
+}
+.w30
+{
+	width:30%;
+}
+.w40
+{
+	width:40%;
+}
+.w50
+{
+	width:50%;
+}
+.w60
+{
+	width:60%;
+}
+.w70
+{
+	width:70%;
+}
+.w80
+{
+	width:80%;
+}
+.w90
+{
+	width:90%;
+}
+.w100
+{
+	width:100%;
+}
+.wp50
+{
+	width:50px;
+}
+.wp120
+{
+	width:120px;
+}
+.clear
+{
+	overflow:hidden;
+	clear:both;
+	line-height:12px;
+}
+.wrap
+{
+	margin:auto;
+	width:960px;
+}
+.header
+{
+	margin-top:10px;
+	height:100px;
+	background:url('header_bg.jpg') repeat-x;
+}
+.nav
+{
+	height:25px;
+	padding:0px 10px;
+	background:#f0f0f0;
+}
+
+.main
+{
+	overflow:hidden;
+}
+#main_nav
+{
+	overflow:hidden;
+	float:left;
+	width:210px;
+	border:3px solid #ccc;
+}
+#main_nav dl
+{
+	margin:10px;
+}
+#main_nav dl dt
+{
+	text-indent:20px;
+	overflow:hidden;
+	height:35px;
+	background:url('menu_bg.gif') no-repeat left bottom;
+}
+#main_nav dl dt #nav_icon
+{
+	overflow:hidden;
+	width:9px;float:left;
+	background:url('minus.gif') no-repeat left;
+}
+#main_nav dl dd ul li
+{
+	text-indent:50px;
+	color: #646464;
+	height:30px;
+	line-height:30px;
+	background: url('minus.gif') no-repeat 35px  center;
+}
+#main_nav dl dd ul li a:link,#main_nav dl dd ul li a:visited
+{
+	color:#646464;
+}
+
+.main_body
+{
+	overflow:hidden;
+	float:right;
+	width:730px;
+}
+.inputform
+{
+	text-indent:15px;
+	width:100%;
+	border:1px solid #d5d5d5;
+	overflow:hidden;
+}
+.inputform tr
+{
+	height:36px;
+}
+.inputform .label
+{
+	width:120px;
+	background:#efefef;
+}
+.inputform .input
+{
+	background:#f6f6f6;
+	padding:10px;
+	text-indent:0px;
+}
+.inputform .list
+{
+	background:#fcfcfc;
+}
+.inputform .txt
+{
+	background:#fff;
+	border:1px solid #ccc;
+	line-height:20px;
+	height:20px;
+	width:200px;
+}
+.inputsubmit
+{
+	padding-left:134px;
+}
+.regularcs
+{
+	float:left;
+	padding-right:10px;
+}
+.footer
+{	
+	color:#fff;
+	text-align:center;
+	background:#3573af;
+	line-height:30px;
+	overflow:hidden;
+}
+.indexblock
+{
+	float:left;
+	padding:10px;
+	width:150px;
+	height:80px;
+	border:1px solid #ccc;
+	background: #fcfcfc;
+	margin-right:10px;
+	cursor:pointer;
+}
+.indexblock dl dt
+{
+	font-size:20px;
+	color:#ff6600;
+	font-weight:bold;
+}
+.subtn
+{
+	width:80px;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	border:1px solid #ccc;
+	background:#fafafa;
+}

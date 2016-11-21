@@ -1,0 +1,7 @@
+User-agent : *
+Disallow : /admin/
+Disallow : /cache/
+Disallow : /captcha/
+Disallow : /include/
+Disallow : /install/
+Disallow : /templets/
