@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-#yiqicms
-=======
 #yiqicms-top
->>>>>>> Initial commit
+
+**说明**
+php版本要求：5.4+
